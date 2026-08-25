@@ -1,0 +1,36 @@
+"use client";
+import {useEffect,useState} from "react";
+const FULL="https://pay.vanqir.com/checkout/2deac7c9-3373-453c-8b67-31590c1c100e?plan=c0663e34-5142-4a3c-85b0-2666597ee803";
+const SPLIT="https://pay.vanqir.com/checkout/2deac7c9-3373-453c-8b67-31590c1c100e?plan=25d674d9-96b0-413e-b98b-998d242c4556";
+const WA="https://wa.link/efyvjz", END=new Date("2026-09-01T23:59:00+01:00").getTime();
+// Atualiza manualmente após cada venda confirmada.
+const SOLD_SEATS=0, TOTAL_SEATS=80;
+const mods=[
+ ["Montando o Estúdio em Casa","Organiza o espaço que tens sem começar por um estúdio caro."],
+ ["Dominando o Programa de Gravação","Aprende o essencial da DAW sem te perder em funções."],
+ ["A Voz Que Vende","Captação, edição e tratamento para a voz deixar de soar amadora."],
+ ["O Segredo da Mixagem","Equilíbrio, limpeza e presença para os elementos funcionarem juntos."],
+ ["Masterização","Volume, presença e preparação do ficheiro final."],
+ ["Do Ficheiro ao Spotify","Distribuição, metadados, direitos e publicação."],
+ ["O Artista Que Cresce","Marketing musical para TikTok, Instagram, Facebook e YouTube."],
+ ["A Nova Fonte de Renda","Posicionamento, clientes e cobrança para transformar habilidade em oportunidade."]];
+const bonus=[["A Minha Primeira Música em 7 Dias","Plano de ação para começares a executar desde a primeira semana."],["Música em Angola Dá Dinheiro","Streaming, serviços, direitos, shows e parcerias."],["Comunidade Privada","Apoio, dúvidas e partilha de progresso."],["O Lançamento Viral","Antecipação, conteúdo e distribuição orgânica."]];
+const faq=[["Preciso de um computador potente?","Não. Vais aprender a avaliar e configurar o que já tens."],["Nunca produzi. Consigo acompanhar?","Sim. O caminho começa no zero e segue uma sequência prática."],["Preciso comprar microfone antes?","Não. Primeiro vem o conhecimento; depois escolhes o que realmente precisas."],["O curso ensina a lançar no Spotify?","Sim. Existe um módulo de distribuição, metadados, direitos e publicação."],["Como funciona o pagamento em duas partes?","Pagas 12.900 Kz agora e 1.000 Kz depois, conforme as condições do checkout."],["Como recebo o acesso?","Depois da confirmação, recebes as instruções no contacto ou e-mail da compra."]];
+function time(){const x=Math.max(0,END-Date.now());return [Math.floor(x/864e5),Math.floor(x/36e5)%24,Math.floor(x/6e4)%60,Math.floor(x/1e3)%60]}
+function Countdown(){const [t,setT]=useState(time());useEffect(()=>{const id=setInterval(()=>setT(time()),1000);return()=>clearInterval(id)},[]);return <div className="countdown">{t.map((n,i)=><div key={i}><b>{String(n).padStart(2,"0")}</b><span>{["dias","horas","min","seg"][i]}</span></div>)}</div>}
+function CTA(){return <div className="cta"><a href={FULL}>GARANTIR VAGA POR 13.900 KZ</a><small>Acesso imediato · 8 módulos + 4 bónus · Garantia de 30 dias</small></div>}
+function Seats(){const p=Math.round(SOLD_SEATS/TOTAL_SEATS*100);return <div className="seats"><div><b>{SOLD_SEATS} das {TOTAL_SEATS} vagas preenchidas</b><span>Atualização manual da equipa</span></div><i><em style={{width:`${p}%`}}/></i><small>Os primeiros 50 inscritos concorrem aos 3 sorteios especiais.</small></div>}
+export default function Home(){return <main>
+ <aside className="top">INSCRIÇÕES ABERTAS · ENCERRA DIA 1 DE SETEMBRO <Countdown/></aside>
+ <header className="hero shell"><div><div className="who"><img src="/assets/yunjoker-hero.jpeg" alt="YUN JOKER"/><p><b>CURSO DE YUN JOKER</b><span>42.016 ouvintes/mês · 1,3M visualizações</span></p></div><label>A TUA MÚSICA. O TEU PROCESSO. O TEU CONTROLO.</label><h1>DO QUARTO AO SPOTIFY <em>SEM PAGAR PRODUTOR</em></h1><p className="lead">Aprende a gravar, mixar, masterizar e lançar a tua própria música em casa — mesmo começando do zero.</p><CTA/><Seats/></div><img className="cover" src="/assets/capa-curso.png" alt="Capa do Código do Artista Independente"/></header>
+ <section><div className="shell"><label>O PONTO ONDE MUITA GENTE TRAVA</label><h2>O TALENTO EXISTE. O QUE FALTA É O PROCESSO.</h2><div className="cards">{["Ideias paradas por falta de dinheiro.","Dependência da agenda de terceiros.","Gastos repetidos sem acumular conhecimento.","Medo de começar com equipamento básico."].map(x=><article key={x}>{x}</article>)}</div><blockquote>Isso não é falta de talento. É défice de Soberania Sonora.</blockquote></div></section>
+ <section className="alt"><div className="shell split"><div className="video"><iframe src="https://www.youtube.com/embed/E8B7O5Nbz-Q?rel=0" title="Vídeo-resumo" allowFullScreen/></div><div><label>PERDESTE A AULA?</label><h2>VÊ O RESUMO ANTES DE DECIDIR.</h2><p>YUN JOKER mostra por que tantos artistas continuam presos e tudo o que recebes nesta primeira turma.</p><CTA/></div></div></section>
+ <section><div className="shell"><label>O CAMINHO COMPLETO</label><h2>8 MÓDULOS: DO QUARTO AO LANÇAMENTO</h2><div className="modules">{mods.map((m,i)=><article key={m[0]}><img src={`/assets/mod${i+1}.png`} alt={`Módulo ${i+1}: ${m[0]}`} loading="lazy"/><div><span>MÓDULO {i+1}</span><h3>{m[0]}</h3><p>{m[1]}</p></div></article>)}</div><CTA/></div></section>
+ <section className="alt"><div className="shell"><label>INCLUÍDOS NA INSCRIÇÃO</label><h2>4 BÓNUS PARA ACELERAR A TUA EXECUÇÃO</h2><div className="cards">{bonus.map((b,i)=><article key={b[0]}><span>BÓNUS 0{i+1}</span><h3>{b[0]}</h3><p>{b[1]}</p></article>)}</div><CTA/></div></section>
+ <section id="planos"><div className="shell"><label>ESCOLHE COMO QUERES ENTRAR</label><h2>DUAS FORMAS DE GARANTIR A TUA VAGA</h2><div className="plans"><article className="featured"><span>PAGAMENTO ÚNICO</span><h3>13.900 Kz</h3><p>Um único pagamento. A forma mais simples de regularizar a inscrição.</p><a href={FULL}>PAGAR 13.900 KZ AGORA</a><small>Garantia de 30 dias</small></article><article><span>PAGAMENTO EM 2 PARTES</span><h3>12.900 Kz <i>agora</i></h3><p>Começa agora e paga os 1.000 Kz restantes depois, segundo o checkout.</p><a href={SPLIT}>ENTRAR COM 12.900 KZ</a><small>+ 1.000 Kz depois · Garantia de 30 dias</small></article></div><Seats/></div></section>
+ <section className="alt"><div className="shell guarantee"><div><label>RISCO ZERO</label><h2>TESTA O MÉTODO DURANTE 30 DIAS</h2><p>Entra, estuda e aplica. Se não te ajudar a avançar, podes solicitar o reembolso conforme as condições do checkout.</p></div><strong>30<span>DIAS DE GARANTIA</span></strong></div><div className="shell"><CTA/></div></section>
+ <section><div className="shell slim"><label>DÚVIDAS FREQUENTES</label><h2>O QUE PODE ESTAR A TRAVAR-TE</h2>{faq.map(f=><details key={f[0]}><summary>{f[0]}</summary><p>{f[1]}</p></details>)}</div></section>
+ <section className="final"><div className="shell slim"><label>A PRÓXIMA MÚSICA NÃO PRECISA VOLTAR AO ZERO</label><h2>APRENDES UMA VEZ. PRODUZES DURANTE ANOS.</h2><Countdown/><CTA/><a className="help" href={WA}>Tenho uma dúvida antes de entrar</a></div></section>
+ <footer><div className="shell"><b>O Código do Artista Independente — YUN JOKER</b><p>Resultados variam conforme estudo, prática, contexto e execução.</p></div></footer>
+ <a className="wa" href={WA} aria-label="Falar no WhatsApp">WA <span>Falar com a equipa</span></a><nav><div><small>A PARTIR DE</small><b>12.900 Kz</b></div><a href="#planos">GARANTIR VAGA</a></nav>
+ </main>}
