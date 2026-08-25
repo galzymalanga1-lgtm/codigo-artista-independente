@@ -1,3 +1,3 @@
 import type {Metadata} from "next";import "./globals.css";
-export const metadata:Metadata={title:"O Código do Artista Independente | YUN JOKER",description:"Aprende a produzir, finalizar e lançar a tua própria música com YUN JOKER.",openGraph:{title:"Do quarto ao Spotify sem pagar produtor",description:"Inscrições abertas para a primeira turma.",images:["/assets/capa-curso.png"],locale:"pt_AO",type:"website"}};
+export const metadata:Metadata={metadataBase:new URL("https://codigo-artista-independente.netlify.app"),title:"O Código do Artista Independente | YUN JOKER",description:"Aprende a produzir, finalizar e lançar a tua própria música com YUN JOKER.",openGraph:{title:"Do quarto ao Spotify sem pagar produtor",description:"Inscrições abertas para a primeira turma.",images:["/assets/capa-curso.png"],locale:"pt_AO",type:"website"}};
 export default function Layout({children}:{children:React.ReactNode}){return <html lang="pt-AO"><body>{children}</body></html>}
