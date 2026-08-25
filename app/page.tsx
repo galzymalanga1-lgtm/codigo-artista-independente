@@ -2,7 +2,8 @@
 import {useEffect,useState} from "react";
 const FULL="https://pay.vanqir.com/checkout/2deac7c9-3373-453c-8b67-31590c1c100e?plan=c0663e34-5142-4a3c-85b0-2666597ee803";
 const SPLIT="https://pay.vanqir.com/checkout/2deac7c9-3373-453c-8b67-31590c1c100e?plan=25d674d9-96b0-413e-b98b-998d242c4556";
-const WA="https://wa.link/efyvjz", END=new Date("2026-09-01T23:59:00+01:00").getTime();\nconst MODULE_ASSET_BASE="https://raw.githubusercontent.com/galzymalanga1-lgtm/codigo-artista-independente/main/public/assets";
+const WA="https://wa.link/efyvjz", END=new Date("2026-09-01T23:59:00+01:00").getTime();
+const MODULE_ASSET_BASE="https://raw.githubusercontent.com/galzymalanga1-lgtm/codigo-artista-independente/main/public/assets";
 // Atualiza manualmente após cada venda confirmada.
 const SOLD_SEATS=34, TOTAL_SEATS=80;
 const mods=[
