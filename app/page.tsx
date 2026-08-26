@@ -1,7 +1,7 @@
 "use client";
 import {useEffect,useState} from "react";
-const FULL="https://pay.vanqir.com/checkout/2deac7c9-3373-453c-8b67-31590c1c100e?plan=c0663e34-5142-4a3c-85b0-2666597ee803";
-const SPLIT="https://pay.vanqir.com/checkout/2deac7c9-3373-453c-8b67-31590c1c100e?plan=25d674d9-96b0-413e-b98b-998d242c4556";
+const FULL="https://pay.vanqir.com/checkout/2deac7c9-3373-453c-8b67-31590c1c100e?plan=195e4d57-efa7-49fe-8a36-f47001a932ee";
+const SPLIT="https://pay.vanqir.com/checkout/2deac7c9-3373-453c-8b67-31590c1c100e?plan=ba5c20aa-38ba-4e83-a237-5baace57e305";
 const WA="https://wa.link/efyvjz", END=new Date("2026-09-01T23:59:00+01:00").getTime();
 const SITE_BASE=process.env.NEXT_PUBLIC_BASE_PATH||"";
 const ASSET_BASE=`${SITE_BASE}/assets-v2`;
